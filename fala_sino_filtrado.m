@@ -9,11 +9,11 @@ f=[0:T-1]*fa/(T-1);
 plot(f(1:T/2), abs(X(1:T/2))); xlabel("Frequência"); ylabel("Amplitude");
 title("Analise espectral de frequência do áudio original");
 
-N = 2;
-w = 100/(fa/2);
-[n, Wn] = buttord(w, 2000/(fa/2), 1, 2)
-[b, a] = butter(n, Wn);
-[H, W] = freqz(b, a, 512, fa);
+N = 10;
+w = 1/(fa/2);
+%[n, Wn] = buttord(w, 2000/(fa/2), 1, 2)
+b = fir1(N, w);
+[H, W] = freqz(b, 1, 512, fa);
 figure;
 plot(f(1:T/2), abs(X(1:T/2)), W, abs(H))
 
